@@ -12,6 +12,23 @@
 // global variables
 var selectedCity = "Tucson, AZ"; // default location
 var weatherReport = null;
+//var  to hold our XHR object
+var httpRequest = false;
+
+//function to get a request object
+function getRequestObject() {
+    alert("getRequestObject");
+    try {
+
+    } catch (errorMessage) {
+        document.querySelector("p.error").innerHTML = "forcast not supported on your browser";
+
+    }
+
+
+
+
+}
 
 // get the weather on click events on city locations
 // and for default city on page load
@@ -25,6 +42,9 @@ function getWeather(evt) {
             selectedCity = evt.srcElement.innerHTML;
         }
     }
+
+    /*
+    hi
     if (selectedCity === "Tucson, AZ") {
         latitude = 37.7577;
         longitude = -122.4376;
@@ -34,21 +54,28 @@ function getWeather(evt) {
     } else if (selectedCity === "Montreal, QC") {
         latitude = 45.5601062;
         longitude = -73.7120832;
+    }*/
+    switch (selectedCity) {
+        case "Tucson, AZ":
+            latitude = 37.7577;
+            longitude = -122.4376;
+            break;
+        case "Chicago, IL":
+            latitude = 41.8337329;
+            longitude = -87.7321555;
+            break;
+        case "Montreal, QC":
+            latitude = 45.5601062;
+            longitude = -73.7120832;
+            break;
+        default:
+            break;
     }
-//        switch(selectedCity) {
-        //            case "Tucson, AZ":
-        //            latitude = 37.7577;
-        //            longitude = -122.4376;
-        //            break;
-        //            case "Chicago, IL":
-        //            latitude = 41.8337329;
-        //            longitude = -87.7321555;
-        //            break;
-        //            case "Montreal, QC":
-        //            latitude = 45.5601062;
-        //            longitude = -73.7120832;
-        //            break;
-        //        }
+
+    //test for XHR object
+    if (!httpRequest) {
+        httpRequest = getRequestObject();
+    }
 }
 
 // retrieve li elements holding city location choices
